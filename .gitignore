@@ -1,0 +1,13 @@
+# Xcode
+build/
+DerivedData/
+*.xcworkspace
+*.xcuserdatad
+*.moved-aside
+*.swp
+
+# Xcode Archives
+*.xcarchive
+
+# その他
+*.DS_Store
