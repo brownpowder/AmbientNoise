@@ -29,9 +29,22 @@
 		5CADAB732E8B847C0021BAAB /* AmbientNoiseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmbientNoiseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		5C1904B42E8FB0640030B3F6 /* Exceptions for "AmbientNoise" folder in "AmbientNoise" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 5CADAB5B2E8B847A0021BAAB /* AmbientNoise */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		5CADAB5E2E8B847A0021BAAB /* AmbientNoise */ = {
+		5C1904A82E8FB0640030B3F6 /* AmbientNoise */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				5C1904B42E8FB0640030B3F6 /* Exceptions for "AmbientNoise" folder in "AmbientNoise" target */,
+			);
 			path = AmbientNoise;
 			sourceTree = "<group>";
 		};
@@ -75,7 +88,7 @@
 		5CADAB532E8B847A0021BAAB = {
 			isa = PBXGroup;
 			children = (
-				5CADAB5E2E8B847A0021BAAB /* AmbientNoise */,
+				5C1904A82E8FB0640030B3F6 /* AmbientNoise */,
 				5CADAB6C2E8B847C0021BAAB /* AmbientNoiseTests */,
 				5CADAB762E8B847C0021BAAB /* AmbientNoiseUITests */,
 				5CADAB5D2E8B847A0021BAAB /* Products */,
@@ -108,7 +121,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				5CADAB5E2E8B847A0021BAAB /* AmbientNoise */,
+				5C1904A82E8FB0640030B3F6 /* AmbientNoise */,
 			);
 			name = AmbientNoise;
 			packageProductDependencies = (
@@ -400,6 +413,7 @@
 				DEVELOPMENT_TEAM = W2BZX88Q9V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AmbientNoise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,6 +446,7 @@
 				DEVELOPMENT_TEAM = W2BZX88Q9V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AmbientNoise/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
