@@ -11,7 +11,7 @@ class AudioPlayerService {
     private var playbackTimer: Timer?
     private var isPlayerA = true
     
-    private let audioFileDuration: TimeInterval = 120.0
+    private var audioFileDuration: TimeInterval = 120.0 // Default value
     private let fadeDuration: TimeInterval = 4.0
     
     private var fadeTask: Task<Void, Never>?
@@ -40,9 +40,8 @@ class AudioPlayerService {
         engine.attach(playerA)
         engine.attach(playerB)
         
-        let format = engine.mainMixerNode.outputFormat(forBus: 0)
-        engine.connect(playerA, to: engine.mainMixerNode, format: format)
-        engine.connect(playerB, to: engine.mainMixerNode, format: format)
+        engine.connect(playerA, to: engine.mainMixerNode, format: nil)
+        engine.connect(playerB, to: engine.mainMixerNode, format: nil)
         
         engine.prepare()
     }
@@ -64,6 +63,12 @@ class AudioPlayerService {
             return
         }
         self.audioFile = audioFile
+        
+        // Dynamically calculate the duration from the audio file
+        let fileDuration = Double(audioFile.length) / audioFile.processingFormat.sampleRate
+        if fileDuration > 0 {
+            self.audioFileDuration = fileDuration
+        }
 
         if !engine.isRunning {
             do {
