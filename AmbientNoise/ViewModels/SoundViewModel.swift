@@ -18,8 +18,18 @@ class SoundViewModel: ObservableObject {
         }
     }
     @Published var isPlaying = false
+    @Published var audioLevel: Float = 0.0
     
     private let audioPlayerService = AudioPlayerService()
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        audioPlayerService.audioLevelSubject
+            .sink { [weak self] level in
+                self?.audioLevel = level
+            }
+            .store(in: &cancellables)
+    }
     
     func togglePlayback() {
         guard let sound = selectedSound else { return }
