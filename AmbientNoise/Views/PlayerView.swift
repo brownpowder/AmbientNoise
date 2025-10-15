@@ -48,13 +48,6 @@ struct PlayerView: View {
             }
             .padding()
             .padding(.top, 20) // Move down from the status bar
-            
-            // Visualizer
-            Circle()
-                .fill(Color.white.opacity(0.15))
-                .frame(width: 150, height: 150)
-                .scaleEffect(1.0 + CGFloat(viewModel.audioLevel) * 1.5)
-                .animation(.easeInOut(duration: 0.15), value: viewModel.audioLevel)
 
             // UI Controls
             VStack(spacing: 20) {

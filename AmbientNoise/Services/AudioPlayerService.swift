@@ -16,8 +16,6 @@ class AudioPlayerService {
     
     private var fadeTask: Task<Void, Never>?
     private var wasPlayingBeforeInterruption = false
-    
-    let audioLevelSubject = CurrentValueSubject<Float, Never>(0.0)
 
     init() {
         setupAudioSession()
@@ -80,8 +78,6 @@ class AudioPlayerService {
                 return
             }
         }
-        
-        installTap()
 
         playerA.volume = 0
         playerB.volume = 0
@@ -104,26 +100,6 @@ class AudioPlayerService {
                 if self.engine.isRunning {
                     self.engine.stop()
                 }
-                self.engine.mainMixerNode.removeTap(onBus: 0)
-                
-                DispatchQueue.main.async {
-                    self.audioLevelSubject.send(0.0)
-                }
-            }
-        }
-    }
-    
-    private func installTap() {
-        engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: nil) { [weak self] (buffer, _) in
-            guard let self = self, let channelData = buffer.floatChannelData else { return }
-            
-            let channelDataValue = channelData.pointee
-            let channelDataValueArray = UnsafeBufferPointer(start: channelDataValue, count: Int(buffer.frameLength))
-            
-            let rms = sqrt(channelDataValueArray.map { $0 * $0 }.reduce(0, +) / Float(buffer.frameLength))
-            
-            DispatchQueue.main.async {
-                self.audioLevelSubject.send(rms)
             }
         }
     }
