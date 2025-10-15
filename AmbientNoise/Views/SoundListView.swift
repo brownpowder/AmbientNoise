@@ -41,11 +41,11 @@ struct SoundListView: View {
 
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(sound.name)
-                                        .font(.custom("Charter-Bold", size: 18))
+                                        .font(.custom("Futura-Bold", size: 18))
                                         .foregroundColor(.white.opacity(0.9))
 
                                     Text(sound.description)
-                                        .font(.custom("Charter-Roman", size: 14))
+                                        .font(.custom("Futura-Medium", size: 14))
                                         .foregroundColor(.white.opacity(0.7))
                                         .lineLimit(2)
                                 }
@@ -65,7 +65,7 @@ struct SoundListView: View {
             .toolbar { 
                 ToolbarItem(placement: .principal) {
                     Text("AmbientNoise")
-                        .font(.custom("Charter-Roman", size: 17))
+                        .font(.custom("Futura-Medium", size: 17))
                         .foregroundColor(.white.opacity(0.7))
                 }
             }

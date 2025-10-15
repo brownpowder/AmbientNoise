@@ -55,13 +55,13 @@ struct PlayerView: View {
                 
                 VStack(alignment: .leading, spacing: 15) {
                     Text(sound.name)
-                        .font(.custom("Charter-Bold", size: 35))
+                        .font(.custom("Futura-Bold", size: 35))
                         .foregroundColor(.white.opacity(0.9))
                         .tracking(8)
                         .shadow(color: .black.opacity(0.5), radius: 10, x: 0, y: 5)
 
                     Text(sound.description)
-                        .font(.custom("Charter-Roman", size: 16))
+                        .font(.custom("Futura-Medium", size: 16))
                         .foregroundColor(.white.opacity(0.7))
                         .multilineTextAlignment(.leading)
                         .lineSpacing(5)
@@ -79,7 +79,7 @@ struct PlayerView: View {
                                 .font(.system(size: 20, weight: .bold))
 
                             Text(viewModel.isPlaying ? "Pause" : "Play")
-                                .font(.custom("Charter-Bold", size: 20))
+                                .font(.custom("Futura-Bold", size: 20))
                                 .tracking(6)
                         }
                         .padding(.horizontal, 35)
