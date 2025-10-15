@@ -57,7 +57,7 @@ struct PlayerView: View {
                     Text(sound.name)
                         .font(.custom("Charter-Bold", size: 35))
                         .foregroundColor(.white.opacity(0.9))
-                        .tracking(8) // Letter spacing
+                        .tracking(8)
                         .shadow(color: .black.opacity(0.5), radius: 10, x: 0, y: 5)
 
                     Text(sound.description)
@@ -80,6 +80,7 @@ struct PlayerView: View {
 
                             Text(viewModel.isPlaying ? "Pause" : "Play")
                                 .font(.custom("Charter-Bold", size: 20))
+                                .tracking(6)
                         }
                         .padding(.horizontal, 35)
                         .padding(.vertical, 18)

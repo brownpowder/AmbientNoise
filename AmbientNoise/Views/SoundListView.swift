@@ -4,11 +4,6 @@ import SwiftUI
 struct SoundListView: View {
     @StateObject private var viewModel = SoundViewModel()
 
-    let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 20),
-        GridItem(.flexible(), spacing: 20)
-    ]
-
     var body: some View {
         NavigationStack {
             ZStack {
@@ -33,18 +28,35 @@ struct SoundListView: View {
                 )
                 .edgesIgnoringSafeArea(.all)
 
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(viewModel.sounds) { sound in
-                            NavigationLink(destination: PlayerView(viewModel: viewModel, sound: sound)) {
-                                SoundCardView(sound: sound)
+                List {
+                    ForEach(viewModel.sounds) { sound in
+                        NavigationLink(destination: PlayerView(viewModel: viewModel, sound: sound)) {
+                            HStack(spacing: 15) {
+                                Image(sound.imageName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(8)
+                                    .clipped()
+
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text(sound.name)
+                                        .font(.custom("Charter-Bold", size: 18))
+                                        .foregroundColor(.white.opacity(0.9))
+
+                                    Text(sound.description)
+                                        .font(.custom("Charter-Roman", size: 14))
+                                        .foregroundColor(.white.opacity(0.7))
+                                        .lineLimit(2)
+                                }
                             }
-                            .buttonStyle(.plain)
-                            .contentShape(Rectangle())
+                            .padding(.vertical, 8)
                         }
+                        .listRowBackground(Color.clear)
+                        .listRowSeparatorTint(.white.opacity(0.2))
                     }
-                    .padding()
                 }
+                .listStyle(.plain)
                 .safeAreaInset(edge: .top) {
                     Color.clear.frame(height: 60)
                 }
@@ -59,74 +71,6 @@ struct SoundListView: View {
             }
         }
         .preferredColorScheme(.dark)
-    }
-}
-
-struct SoundCardView: View {
-    let sound: Sound
-
-    var body: some View {
-        VStack {
-            Image(sound.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 120)
-            Text(sound.name)
-                .font(.custom("Charter-Roman", size: 20))
-                .shadow(color: .black.opacity(0.6), radius: 3, x: 0, y: 2) 
-                .foregroundColor(.white)
-                .padding()
-        }
-        .overlay(
-            ZStack {
-                // Color overlay defined by the user
-                colorOverlay()
-                
-                // Vignette effect from PlayerView, adjusted for card size
-                RadialGradient(
-                    gradient: Gradient(colors: [.clear, .black.opacity(0.5)]),
-                    center: .center,
-                    startRadius: 20,
-                    endRadius: 100
-                )
-            }
-        )
-        .cornerRadius(16)
-        .clipped()
-    }
-    
-    @ViewBuilder
-    private func colorOverlay() -> some View {
-        Group {
-            if sound.fileName == "red-noise" {
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(red: 0.65, green: 0.25, blue: 0.05).opacity(0.5),
-                        Color(red: 0.55, green: 0.20, blue: 0.07).opacity(0.4)
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            } else if sound.fileName == "pink-noise" {
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(red: 0.55, green: 0.28, blue: 0.32).opacity(0.3),
-                        Color(red: 0.45, green: 0.20, blue: 0.25).opacity(0.4)
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            } else {
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        Color(red: 0.15, green: 0.1, blue: 0.08).opacity(0.2),
-                        Color(red: 0.25, green: 0.18, blue: 0.12).opacity(0.1)
-                    ]),
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            }
-        }
     }
 }
 
