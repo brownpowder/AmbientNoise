@@ -166,7 +166,9 @@ class AudioPlayerService {
             // Interruption began, pause audio
             wasPlayingBeforeInterruption = engine.isRunning
             if wasPlayingBeforeInterruption {
-                engine.pause()
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.engine.pause()
+                }
             }
         case .ended:
             guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
